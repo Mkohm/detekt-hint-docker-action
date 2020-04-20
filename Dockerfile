@@ -6,8 +6,8 @@ RUN apt update
 RUN yes | apt install git
 
 RUN yes | apt install default-jdk
-Run yes | apt-get install ruby-full
-
+RUN yes | apt-get install ruby-full
+RUN yes | apt install build-essential
 RUN apt-get install ruby-dev
 
 RUN gem install ruby-ll
