@@ -12,6 +12,9 @@ RUN apt-get install ruby-dev
 
 RUN gem install bundler
 
+RUN yes | apt-get install build-essential patch
+RUN yes | apt-get install ruby-dev zlib1g-dev liblzma-dev
+
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 
