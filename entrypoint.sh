@@ -8,6 +8,7 @@ echo "::set-env name=DANGER_GITHUB_API_TOKEN::$1"
 
 git clone --depth=50 --branch=master https://github.com/Mkohm/detekt.git Mkohm/detekt
 ./gradlew assemble
+bundle update
 bundle install
 bundle update danger
 bundle exec danger --verbose
