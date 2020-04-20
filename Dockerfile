@@ -11,7 +11,6 @@ Run yes | apt-get install ruby-full
 RUN apt-get install ruby-dev
 
 RUN gem install bundler
-RUN bundle install
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
