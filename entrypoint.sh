@@ -16,6 +16,6 @@ ls /
 
 ./gradlew assemble
 bundle update
-bundle install --gemfile=/github/workspace/Gemfile
+bundle install --gemfile=/github/home/Gemfile
 bundle update danger
-bundle exec danger --verbose --dangerfile=/github/workspace/Dangerfile
+bundle exec danger --verbose --dangerfile=/github/home/Dangerfile
