@@ -6,7 +6,7 @@ echo "::set-output name=time::$time"
 
 echo "::set-env name=DANGER_GITHUB_API_TOKEN::$1"
 
-git clone --branch=master https://github.com/Mkohm/detekt.git Mkohm/detekt
+
 ./gradlew assemble
 bundle update
 bundle install
