@@ -7,9 +7,9 @@ echo "::set-output name=time::$time"
 echo "::set-env name=DANGER_GITHUB_API_TOKEN::$1"
 
 echo "Github Workspace is: $GITHUB_WORKSPACE"
-echo ls /github/workspace/
+ls /github/workspace/
 echo "Github Home is: $HOME"
-echo ls /github/home/
+ls /github/home/
 
 
 ./gradlew assemble
