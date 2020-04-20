@@ -9,6 +9,6 @@ echo "::set-env name=DANGER_GITHUB_API_TOKEN::$1"
 
 ./gradlew assemble
 bundle update
-bundle install
+bundle install --gemfile=/github/workspace/
 bundle update danger
 bundle exec danger --verbose
