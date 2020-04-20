@@ -10,6 +10,8 @@ echo "Github Workspace is: $GITHUB_WORKSPACE"
 ls /github/workspace/
 echo "Github Home is: $HOME"
 ls /github/home/
+echo "root dir:"
+ls /
 
 
 ./gradlew assemble
