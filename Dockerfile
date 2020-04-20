@@ -10,7 +10,9 @@ Run yes | apt-get install ruby-full
 
 RUN apt-get install ruby-dev
 
+RUN gem install ruby-ll
 RUN gem install bundler
+
 
 RUN yes | apt-get install build-essential patch
 RUN yes | apt-get install ruby-dev zlib1g-dev liblzma-dev
