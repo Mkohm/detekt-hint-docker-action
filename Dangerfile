@@ -1,4 +1,4 @@
-exec("git fetch git@github.com:mkohm/detekt.git master:master")
+exec("git clone https://github.com/Mkohm/detekt")
 
 kotlin_detekt.filtering = true
 kotlin_detekt.report_file = "/github/workspace/build/reports/detekt-hint-report.xml"
