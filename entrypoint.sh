@@ -12,4 +12,6 @@ echo $JAVA_HOME
 bundle update
 bundle install --gemfile=/Gemfile
 bundle update danger
-bundle exec danger --verbose --dangerfile=/Dangerfile
+
+# Will always return a successfull exit code, making PRs from forks also succeed. However, because of this bug https://github.com/danger/danger/issues/1103 Danger will not run. When the bug is fixed, the command can be run as normally.
+bundle exec danger --verbose --dangerfile=/Dangerfile || true
