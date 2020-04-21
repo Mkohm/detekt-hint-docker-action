@@ -6,9 +6,17 @@ echo "::set-output name=time::$time"
 
 echo "::set-env name=DANGER_GITHUB_API_TOKEN::$1"
 
-git clone --branch=master https://github.com/Mkohm/detekt.git Mkohm/detekt
+echo "Github Workspace is: $GITHUB_WORKSPACE"
+ls /github/workspace/
+echo "Github Home is: $HOME"
+ls /github/home/
+echo "root dir:"
+ls /
+echo "build dir:"
+ls /github/workspace/build
+
 ./gradlew assemble
 bundle update
-bundle install
+bundle install --gemfile=/Gemfile
 bundle update danger
-bundle exec danger --verbose
+bundle exec danger --verbose --dangerfile=/Dangerfile
