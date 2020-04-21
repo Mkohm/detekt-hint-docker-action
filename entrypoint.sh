@@ -15,6 +15,11 @@ ls /
 echo "build dir:"
 ls /github/workspace/build
 
+echo "java version"
+java -v
+echo "java home variable"
+echo $JAVA_HOME
+
 ./gradlew assemble
 bundle update
 bundle install --gemfile=/Gemfile
