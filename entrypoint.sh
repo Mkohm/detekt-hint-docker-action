@@ -12,7 +12,8 @@ echo "Github Home is: $HOME"
 ls /github/home/
 echo "root dir:"
 ls /
-
+echo "build dir:"
+ls /github/workspace/build
 
 ./gradlew assemble
 bundle update
