@@ -21,7 +21,7 @@ echo "java home variable"
 echo $JAVA_HOME
 echo "javapath"
 ls /usr/lib/jvm/
-RUN export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+RUN export JAVA_HOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64"
 echo $JAVA_HOME
 
 ./gradlew assemble
