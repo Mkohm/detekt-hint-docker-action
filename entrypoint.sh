@@ -21,7 +21,7 @@ echo "java home variable"
 echo $JAVA_HOME
 echo "javapath"
 ls /usr/lib/jvm/
-RUN export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 source /etc/environment
 echo "new java home:"
 echo $JAVA_HOME
