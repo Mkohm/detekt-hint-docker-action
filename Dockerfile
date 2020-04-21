@@ -2,6 +2,8 @@
 FROM ubuntu:18.04
 
 RUN apt update
+RUN yes | apt install git
+
 RUN yes | apt install default-jdk
 RUN yes | apt install ruby-full
 
