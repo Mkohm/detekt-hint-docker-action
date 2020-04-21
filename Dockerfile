@@ -17,6 +17,9 @@ RUN gem install bundler
 RUN yes | apt-get install build-essential patch
 RUN yes | apt-get install ruby-dev zlib1g-dev liblzma-dev
 
+RUN export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+RUN echo $JAVA_HOME
+
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 
