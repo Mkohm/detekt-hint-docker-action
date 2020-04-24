@@ -2,6 +2,9 @@
 FROM ubuntu:18.04
 
 RUN apt update
+RUN apt upgrade
+RUN apt install curl
+
 RUN yes | apt install git
 
 RUN yes | apt install default-jdk
