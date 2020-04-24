@@ -1,3 +1,6 @@
+import systems.danger.kotlin.*
+import org.jetbrains.kotlin.script.util.*
+
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
