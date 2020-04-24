@@ -32,7 +32,11 @@ for (i in 0 until fileList.length) {
         println("Message: $message")
 
 
-        warn(message, fileName, line.toInt())
+        if (danger.git.modifiedFiles.contains(fileName)) {
+
+            // Only notify about the warning if the file has been modified in this PR
+            warn(message, fileName, line.toInt())
+        }
     }
 }
 
