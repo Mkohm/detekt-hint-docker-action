@@ -1,19 +1,30 @@
-# Container image that runs your code
-FROM ubuntu:18.04
+FROM gradle:5.6.2-jdk8
 
-RUN apt update
-RUN apt upgrade
-RUN yes | apt install curl
+MAINTAINER Franco Meloni
 
-RUN yes | apt install git
+LABEL "com.github.actions.name"="Danger Kotlin"
+LABEL "com.github.actions.description"="Runs Kotlin Dangerfiles"
+LABEL "com.github.actions.icon"="zap"
+LABEL "com.github.actions.color"="blue"
 
-RUN yes | apt install default-jdk
+# Install dependencies
+RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
+RUN apt-get install -y nodejs make zip
 
-# Copies your code file from your action repository to the filesystem path `/` of the container
-COPY entrypoint.sh /entrypoint.sh
+RUN cd /usr/lib && \
+    wget -q https://github.com/JetBrains/kotlin/releases/download/v1.3.70/kotlin-compiler-1.3.70.zip && \
+    unzip kotlin-compiler-*.zip && \
+    rm kotlin-compiler-*.zip
+
+ENV PATH $PATH:/usr/lib/kotlinc/bin
+
+# Install danger-kotlin globally
+COPY . _danger-kotlin
+
 COPY Dangerfile.df.kts /Dangerfile.df.kts
 
 
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
+RUN cd _danger-kotlin && make install
 
+# Run Danger Kotlin via Danger JS, allowing for custom args
+ENTRYPOINT ["npx", "--package", "danger", "danger-kotlin", "ci"]
