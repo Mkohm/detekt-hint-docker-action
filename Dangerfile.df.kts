@@ -18,8 +18,10 @@ val isTrivial = danger.github.pullRequest.title.contains("#trivial")
 
 warn("This is a test")
 
-val warningsReport = allSourceFiles
-val xlmFile: File = File(warningsReport.toString())
+val warningsReport = allSourceFiles.find { it.contains("detekt-hint-report.xml") }
+
+val xlmFile: File = File(warningsReport)
+println(xlmFile.toString())
 val xmlDoc: Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(xlmFile)
 xmlDoc.documentElement.normalize()
 
@@ -30,42 +32,24 @@ val fileList: NodeList = xmlDoc.getElementsByTagName("file")
 for (i in 0 until fileList.length) {
     var fileNode: Node = fileList.item(i)
 
-    if (fileNode.getNodeType() === Node.ELEMENT_NODE) {
+    if (fileNode.nodeType === Node.ELEMENT_NODE) {
 
         val elem = fileNode as Element
 
-        val mMap = mutableMapOf<String, String>()
+        val fileName = fileNode.getAttribute("name")
+        println("Filename: $fileName")
 
-        for (j in 0..elem.attributes.length - 1) {
-            mMap.putIfAbsent(elem.attributes.item(j).nodeName, elem.attributes.item(j).nodeValue)
+        for (k in 0 until fileNode.getElementsByTagName("error").length) {
+            val error = fileNode.getElementsByTagName("error").item(k) as Element
+            println("Error")
+
+            val line = error.getAttribute("line")
+            println("Line: $line")
+            val message = error.getAttribute("message")
+            println("Message: $message")
+
+
+            warn(message, fileName, line.toInt())
         }
-        println("Current Book : ${fileNode.nodeName} - $mMap")
-
-        println("Author: ${elem.getElementsByTagName("author").item(0).textContent}")
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if (!isTrivial && !changelogChanged && sourceChanges != null) {
-    warn("Any changes to library code should be reflected in the Changelog.\n\nPlease consider adding a note there and adhere to the [Changelog Guidelines](https://github.com/Moya/contributors/blob/master/Changelog%20Guidelines.md).")
-}
-
-if (danger.git.createdFiles.size + danger.git.modifiedFiles.size - danger.git.deletedFiles.size > 10) {
-    warn("Big PR, try to keep changes smaller if you can")
-}
-
-if (danger.github.pullRequest.title.contains("WIP", false)) {
-    warn("PR is classed as Work in Progress")
 }
