@@ -8,6 +8,8 @@ source /etc/environment
 echo "New java home:"
 echo $JAVA_HOME
 
+yes | apt install curl
+
 
 bash <(curl -s https://raw.githubusercontent.com/danger/kotlin/master/scripts/install.sh)
 source ~/.bash_profile
