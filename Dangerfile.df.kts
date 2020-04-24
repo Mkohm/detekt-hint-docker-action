@@ -1,12 +1,12 @@
-import systems.danger.kotlin.*
-import org.jetbrains.kotlin.script.util.*
-
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList
+import systems.danger.kotlin.Danger
+import systems.danger.kotlin.warn
 import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
+
 
 val danger = Danger(args)
 
@@ -19,7 +19,7 @@ val isTrivial = danger.github.pullRequest.title.contains("#trivial")
 warn("This is a test")
 
 val warningsReport = allSourceFiles
-val xlmFile: File = File(warningsReport)
+val xlmFile: File = File(warningsReport.toString())
 val xmlDoc: Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(xlmFile)
 xmlDoc.documentElement.normalize()
 
@@ -27,7 +27,7 @@ println("Root Node:" + xmlDoc.documentElement.nodeName)
 
 val fileList: NodeList = xmlDoc.getElementsByTagName("file")
 
-for (i in 0..fileList.length - 1) {
+for (i in 0 until fileList.length) {
     var fileNode: Node = fileList.item(i)
 
     if (fileNode.getNodeType() === Node.ELEMENT_NODE) {
