@@ -20,7 +20,7 @@ warn("This is a test")
 
 val warningsReport = allSourceFiles.find { it.contains("detekt-hint-report.xml") }
 
-val xlmFile: File = File(warningsReport)
+val xlmFile: File = File(warningsReport.toString())
 println(xlmFile.toString())
 val xmlDoc: Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(xlmFile)
 xmlDoc.documentElement.normalize()
