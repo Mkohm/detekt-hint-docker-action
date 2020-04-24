@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
 echo "::set-env name=DANGER_GITHUB_API_TOKEN::$1"
 
