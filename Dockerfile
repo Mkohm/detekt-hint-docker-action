@@ -19,12 +19,16 @@ RUN cd /usr/lib && \
 ENV PATH $PATH:/usr/lib/kotlinc/bin
 
 # Install danger-kotlin globally
-COPY . _danger-kotlin
+#COPY . _danger-kotlin
+
+# Install danger-kotlin
+RUN bash <(curl -s https://raw.githubusercontent.com/danger/kotlin/master/scripts/install.sh)
+RUN source ~/.bash_profile
 
 COPY Dangerfile.df.kts /Dangerfile.df.kts
 COPY entrypoint.sh /entrypoint.sh
 
-RUN cd _danger-kotlin && make install
+#RUN cd _danger-kotlin && make install
 
 # Run Danger Kotlin via Danger JS, allowing for custom args
 ENTRYPOINT ["/entrypoint.sh"]
