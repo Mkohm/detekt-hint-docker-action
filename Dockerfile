@@ -21,10 +21,6 @@ ENV PATH $PATH:/usr/lib/kotlinc/bin
 # Install danger-kotlin globally
 #COPY . _danger-kotlin
 
-# Install danger-kotlin
-RUN /bin/bash -c "<(curl -s https://raw.githubusercontent.com/danger/kotlin/master/scripts/install.sh)"
-RUN /bin/bash -c "source ~/.bash_profile"
-
 COPY Dangerfile.df.kts /Dangerfile.df.kts
 COPY entrypoint.sh /entrypoint.sh
 
