@@ -1,6 +1,7 @@
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.NodeList
+import systems.danger.kotlin.Danger
 import systems.danger.kotlin.warn
 import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
@@ -9,6 +10,8 @@ import javax.xml.parsers.DocumentBuilderFactory
 val xmlFile: File = File("build/reports/detekt-hint-report.xml")
 val xmlDoc: Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(xmlFile)
 xmlDoc.documentElement.normalize()
+
+val danger = Danger(args)
 
 val fileList: NodeList = xmlDoc.getElementsByTagName("file")
 
